@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RPA Fake Hacking</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', monospace;
+      background-color: #000;
+      color: #00ff00;
+      overflow: hidden;
+    }
+
+    .centered {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #00ffcc;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #66ff66;
+      margin: 20px 0;
+    }
+
+    button {
+      background: #00ffcc;
+      color: black;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00e6b8;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .underline {
+      width: 100%;
+      height: 8px;
+      background-color: #00ff00;
+      margin-top: 20px;
+    }
+
+    .circle {
+      border: 8px solid #00ff00;
+      border-top: 8px solid transparent;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      animation: spin 2s linear infinite;
+      margin: 30px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #terminal {
+      width: 90%;
+      max-height: 60vh;
+      overflow-y: auto;
+      background-color: #001100;
+      border: 2px solid #00ff00;
+      padding: 20px;
+      font-size: 16px;
+      white-space: pre-wrap;
+      margin: 20px auto;
+    }
+
+    .bottom-text {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #66ff66;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Welcome Screen -->
+  <div id="welcome" class="centered">
+    <h1>👨‍💻 RPA Fake Hacking Website 👨‍💻</h1>
+    <p>Hack the world. Simulate system breaches. Trick your friends.<br>100% fake, 100% fun.</p>
+    <button onclick="startHacking()">🚀 Continue</button>
+  </div>
+
+  <!-- Hacking Interface -->
+  <div id="hacking" class="hidden">
+    <div class="underline"></div>
+    <div class="circle"></div>
+    <div id="terminal"></div>
+    <div class="bottom-text">
+      Hack the World. Simulate System Breaches. Trick Your Friends with Ultra-Realistic Hacking Animation.
+    </div>
+  </div>
+
+  <script>
+    const logs = [
+      "$ nmap -sV 192.168.0.1",
+      "PORT     STATE SERVICE VERSION",
+      "22/tcp   open  ssh     OpenSSH 7.9",
+      "80/tcp   open  http    Apache 2.4.29",
+      "",
+      "$ ssh root@192.168.0.1",
+      "root@192.168.0.1's password: ********",
+      "Welcome to Ubuntu 20.04 LTS",
+      "",
+      "$ whoami",
+      "root",
+      "$ cd /var/www/html",
+      "$ ls -la",
+      "-rw-r--r-- 1 root root  index.html",
+      "-rw-r--r-- 1 root root  config.php",
+      "$ cat config.php",
+      "<?php $db_pass = 'admin@123'; ?>",
+      "$ curl http://target.local/api/user",
+      "{ username: 'admin', password: 'qwerty123' }",
+      "$ sudo ./exploit.sh",
+      "[*] Running exploit...",
+      "[+] Exploit successful!",
+      "[+] Shell opened...",
+      "$ rm -rf /var/log/*",
+      "[+] Logs deleted.",
+      "[✓] Mission Complete. Disconnecting..."
+    ];
+
+    function startHacking() {
+      document.getElementById('welcome').classList.add('hidden');
+      document.getElementById('hacking').classList.remove('hidden');
+      printLog();
+    }
+
+    const terminal = document.getElementById('terminal');
+    let i = 0;
+
+    function printLog() {
+      if (i < logs.length) {
+        terminal.innerHTML += logs[i] + "\n";
+        terminal.scrollTop = terminal.scrollHeight;
+        i++;
+        setTimeout(printLog, 700 + Math.random() * 400);
+      } else {
+        terminal.innerHTML += "\n> PRESS ESC TO EXIT";
+      }
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === "Escape") {
+        window.close(); // symbolic exit
+      }
+    });
+  </script>
+
+</body>
+</html>
